@@ -71,4 +71,16 @@ public class SareesController {
     }
 
 
+
+    @GetMapping("/{id}")
+public Optional<Sarees> getbyid(@PathVariable int id){
+        return sareesservice.getbyIdService(id);
+}
+    @GetMapping("/get-sarees-id")
+    public List<Sarees> getsareesbyid(List<Integer> ids){
+        return sareesservice.getsareesbyid(ids);
+    }
+
+
+
 }

@@ -47,4 +47,9 @@ public class Sareesservice {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public List<Sarees> getsareesbyid(List<Integer> ids){
+        return sareesdao.getsareesbyid(ids);
+    }
+
 }

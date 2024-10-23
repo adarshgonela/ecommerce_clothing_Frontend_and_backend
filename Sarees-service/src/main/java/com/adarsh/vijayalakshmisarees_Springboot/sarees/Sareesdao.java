@@ -35,4 +35,12 @@ public Optional<Sarees> getbyId(int id){
     public List<Sarees> findSareesByPriceRange(Double minPrice, Double maxPrice) {
         return sareesrepo.findByPriceRange(minPrice,maxPrice);
     }
+
+
+    public List<Sarees> getsareesbyid(List<Integer> ids){
+        return sareesrepo.findAllById(ids);
+    }
+
+
+
 }

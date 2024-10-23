@@ -20,4 +20,6 @@ public interface Sareesrepo extends JpaRepository<Sarees,Integer> {
     @Query("SELECT s FROM Sarees s WHERE s.sareesprice BETWEEN :minPrice AND :maxPrice")
     List<Sarees> findByPriceRange(@PathVariable("minPrice") Double minPrice, @PathVariable("maxPrice") Double maxPrice);
 
+    List<Sarees> findAllById(Iterable<Integer> ids);
+
 }
