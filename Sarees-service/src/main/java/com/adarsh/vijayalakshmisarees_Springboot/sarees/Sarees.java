@@ -31,4 +31,5 @@ private int sareesquantity;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ImageModel imageModel;
+    private int pieces;
 }

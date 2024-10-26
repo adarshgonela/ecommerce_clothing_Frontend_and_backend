@@ -20,13 +20,6 @@ public class SareesController {
     @Autowired
     private  Sareesservice sareesservice;
 
-//    @PostMapping("/savesaree")
-//    public ResponseEntity<Sarees> savesareecontroller(@RequestBody Sarees sarees) throws IOException {
-//        return Optional.of(sareesservice.saveService(sarees))
-//                .map(savedSaree -> new ResponseEntity<>(savedSaree, HttpStatus.CREATED))
-//                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED));
-//    }
-
     @PostMapping("/savesaree")
     public ResponseEntity<Sarees> savesareecontroller(@RequestBody Sarees sarees) {
         try {
@@ -69,15 +62,12 @@ public class SareesController {
     public ResponseEntity<List<Sarees>> findByPriceRange(@PathVariable("minPrice") Double minPrice, @PathVariable("maxPrice") Double maxPrice){
         return sareesservice.findByPriceRange(minPrice,maxPrice);
     }
-
-
-
     @GetMapping("/{id}")
 public Optional<Sarees> getbyid(@PathVariable int id){
         return sareesservice.getbyIdService(id);
 }
-    @GetMapping("/get-sarees-id")
-    public List<Sarees> getsareesbyid(List<Integer> ids){
+    @PostMapping("/get-sarees-id")
+    public List<Sarees> getsareesbyids(@RequestBody List<Integer> ids){
         return sareesservice.getsareesbyid(ids);
     }
 
