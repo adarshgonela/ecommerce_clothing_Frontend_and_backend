@@ -8,7 +8,7 @@ public class SareesResponse {
     private int sareesmrp;
     private int sareesprice;
     private int sareesquantity;
-private int pieces;
+    private int pieces;
 
     public int getPieces() {
         return pieces;

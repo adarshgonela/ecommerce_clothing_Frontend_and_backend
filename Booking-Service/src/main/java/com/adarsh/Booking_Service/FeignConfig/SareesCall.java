@@ -25,4 +25,6 @@ public interface SareesCall {
 
     @GetMapping("/sarees/{id}")
     public Optional<SareesResponse> getbyid(@PathVariable int id);
+    @PostMapping("/sarees/{id}")
+    public Optional<SareesResponse> getbyidpost(@PathVariable int id);
 }

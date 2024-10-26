@@ -1,5 +1,6 @@
 package com.adarsh.Booking_Service.Booking;
 
+import com.adarsh.Booking_Service.Responses.SareesListBooking;
 import com.adarsh.Booking_Service.Responses.SareesResponse;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -26,17 +27,20 @@ public class Booking {
     private String sareesId;
     @NotNull(message = "enter orderid")
     private String orderid;
-    @NotNull(message = "enter  amount")
-        private int amount;
+    @NotNull(message = "enter  totalprice")
+        private int totalprice;
     @NotNull(message = "enter Payment Method")
     private String paymentMethod;
     @PastOrPresent
     private LocalDateTime Bookingdateandtime;
-//    @NotNull//for more ids
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<SareesResponse> sareeslist;
-//    @NotNull //1product * quantities
-//    private int items;
+
+@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+@JoinTable
+//    @Transient // Mark this as transient to avoid persistence
+    private List<SareesListBooking> sareesList; // Updated to use SareesListBooking
+
+    @NotNull(message = "Enter items count")
+    private int items;
 
 
 

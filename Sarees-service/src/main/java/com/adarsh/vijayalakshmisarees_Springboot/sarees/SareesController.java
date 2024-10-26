@@ -71,6 +71,8 @@ public Optional<Sarees> getbyid(@PathVariable int id){
         return sareesservice.getsareesbyid(ids);
     }
 
-
-
+    @PostMapping("/{id}")
+    public Optional<Sarees> getbyidpost(@PathVariable int id) {
+        return sareesservice.getbyIdService(id);
+    }
 }
