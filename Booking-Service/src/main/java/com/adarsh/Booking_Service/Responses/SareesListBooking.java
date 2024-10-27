@@ -1,5 +1,6 @@
 package com.adarsh.Booking_Service.Responses;
 
+import com.adarsh.Booking_Service.Booking.Booking;
 import jakarta.persistence.*;
 import lombok.Data;
 //@Embeddable//This way, it will not create a separate table but will still allow you to store its fields in the Booking table

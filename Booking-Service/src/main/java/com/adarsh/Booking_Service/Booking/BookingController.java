@@ -1,9 +1,12 @@
 package com.adarsh.Booking_Service.Booking;
 
+import com.adarsh.Booking_Service.ExceptionHandling.Exceptions.SareeNotFoundException;
 import com.adarsh.Booking_Service.FeignConfig.SareesCall;
 import com.adarsh.Booking_Service.Responses.SareesListBooking;
 import com.adarsh.Booking_Service.Responses.SareesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.print.Book;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +30,12 @@ public class BookingController {
 
 @Autowired
 private SareesCall sareesCall;
-//    @PostMapping("/save")
-//    @Async
-//    public Booking saveControllerBooking(@RequestBody Booking booking)
-//    {
-//        return  bookingservice.saveServiceBooking(booking);
-//    }
+    @PostMapping("/save")
+    @Async
+    public Booking saveControllerBooking(@RequestBody Booking booking)
+    {
+        return  bookingservice.saveServiceBooking(booking);
+    }
 
     @PostMapping("/save11")
     @Async
@@ -41,8 +45,10 @@ private SareesCall sareesCall;
         if (booking.getSareesList() != null) {
             for (SareesListBooking sareesList : booking.getSareesList()) {
                 // Fetch saree by ID
+
                 Optional<SareesResponse> optionalSareesResponse = sareesCall.getbyidpost(sareesList.getSareeid());
                 // Check if the saree is present
+                System.out.println(optionalSareesResponse);
                 if (optionalSareesResponse.isPresent()) {
                     // Calculate the price for the current saree
                     SareesResponse sareesResponse = optionalSareesResponse.get();
@@ -52,7 +58,7 @@ private SareesCall sareesCall;
                 } else {
                     // Handle case where saree is not found (optional)
                     // You can throw an exception or log a warning
-                    System.out.println("Saree with ID " + sareesList.getSareeid() + " not found.");
+                    throw new SareeNotFoundException();
                 }
             }
         }
@@ -65,10 +71,21 @@ private SareesCall sareesCall;
     }
 
     @GetMapping("/getall")
-    public List<Booking> saveControllerBooking() {
-        List<Booking> bookingList = bookingservice.getAllServiceBooking();
-        return bookingList;
+    public ResponseEntity<List<Booking>> saveControllerBooking() {
+        try {
+            List<Booking> bookingList = bookingservice.getAllServiceBooking();
+
+            if (bookingList.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Return 204 if no bookings found
+            }
+            return new ResponseEntity<>(bookingList, HttpStatus.OK); // Return 200 with the list
+        } catch (Exception e) {
+            // Log the exception (use a logger for production code)
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Return 500 for any other errors
+        }
     }
+
 
     @GetMapping("/getall1")
     public List<SareesResponse> saveControllerBooking1() {
