@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.models;
+package com.adarsh.springjwt.models;
 
 import java.util.HashSet;
 import java.util.Set;
