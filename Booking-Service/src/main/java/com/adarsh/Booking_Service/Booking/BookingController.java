@@ -30,14 +30,14 @@ public class BookingController {
 
 @Autowired
 private SareesCall sareesCall;
-    @PostMapping("/save")
-    @Async
-    public Booking saveControllerBooking(@RequestBody Booking booking)
-    {
-        return  bookingservice.saveServiceBooking(booking);
-    }
+    // @PostMapping("/save")
+    // @Async
+    // public Booking saveControllerBooking(@RequestBody Booking booking)
+    // {
+    //     return  bookingservice.saveServiceBooking(booking);
+    // }
 
-    @PostMapping("/save11")
+    @PostMapping("/save")
     @Async
     public Booking savebooking(@RequestBody Booking booking){
         int totalPrice = 0;

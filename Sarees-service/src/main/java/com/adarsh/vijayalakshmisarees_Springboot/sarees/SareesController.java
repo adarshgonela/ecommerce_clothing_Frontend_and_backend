@@ -62,16 +62,16 @@ public class SareesController {
     public ResponseEntity<List<Sarees>> findByPriceRange(@PathVariable("minPrice") Double minPrice, @PathVariable("maxPrice") Double maxPrice){
         return sareesservice.findByPriceRange(minPrice,maxPrice);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
 public Optional<Sarees> getbyid(@PathVariable int id){
         return sareesservice.getbyIdService(id);
 }
-    @PostMapping("/get-sarees-id")
+    @PostMapping("/get-sarees-ids")
     public List<Sarees> getsareesbyids(@RequestBody List<Integer> ids){
         return sareesservice.getsareesbyid(ids);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/id/{id}")
     public Optional<Sarees> getbyidpost(@PathVariable int id) {
         return sareesservice.getbyIdService(id);
     }
