@@ -75,8 +75,5 @@ public Optional<Sarees> getbyid(@PathVariable int id){
     public Optional<Sarees> getbyidpost(@PathVariable int id) {
         return sareesservice.getbyIdService(id);
     }
-    @GetMapping("/test1")
-    public String test(){
-        return "i am test methods";
-    }
+    
 }
