@@ -49,7 +49,7 @@ public class SareesController {
         }
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/type/{name}")
     public List<Sarees> getsareesbytype( @PathVariable String name) {
         return sareesservice.getsareesbytype(name);
     }
@@ -71,12 +71,8 @@ public Optional<Sarees> getbyid(@PathVariable int id){
         return sareesservice.getsareesbyid(ids);
     }
 
-    @PostMapping("/id/{id}")
+    @PostMapping("/idpost/{id}")
     public Optional<Sarees> getbyidpost(@PathVariable int id) {
         return sareesservice.getbyIdService(id);
-    }
-    @GetMapping("/test1")
-    public String test(){
-        return "i am test methods";
     }
 }

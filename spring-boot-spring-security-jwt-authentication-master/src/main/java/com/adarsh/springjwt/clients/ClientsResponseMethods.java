@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,9 +15,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
+@Transactional
+@Async
 public class ClientsResponseMethods {
 
     @Autowired
@@ -124,9 +128,21 @@ public ResponseEntity<String> createbOOKING(@RequestBody SareesResponse sareesRe
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<String> getallcartcontroller() {
         String productEndpoint = "http://localhost:8765/CARTSERVICE/cart/all";
-        ResponseEntity<String> response = restTemplate.getForEntity(
-                productEndpoint,
+        ResponseEntity<String> response = restTemplate.getForEntity
+                (productEndpoint,
                 String.class);
         return response;
     }
+
+    @GetMapping("/cart/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<String> getbyIdcartcontroller(@PathVariable int id) {
+        String productEndpoint = "http://localhost:8765/CARTSERVICE/cart/id/"+id;
+        ResponseEntity<String> response = restTemplate.getForEntity
+                (productEndpoint,
+                        String.class);
+        return response;
+    }
+
+
 }

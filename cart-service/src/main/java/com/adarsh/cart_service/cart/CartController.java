@@ -26,11 +26,11 @@ private CartService service;
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Optional<Cart> getbyidcart(@PathVariable int id){
         return service.getbyidcart(id);
     }
-    @PostMapping("/{id}")
+    @PostMapping("/idpost/{id}")
     public Optional<Cart> getbyidcartpost(@PathVariable int id){
         return service.getbyidcart(id);
     }
