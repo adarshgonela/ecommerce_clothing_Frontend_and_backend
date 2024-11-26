@@ -34,6 +34,22 @@ public class SareesController {
     }
 
 
+    // @GetMapping("/all")
+    // @Async
+    // public ResponseEntity<List<Sarees>> getallcontroller() {
+    //     try {
+    //         List<Sarees> sareeList = sareesservice.getallservice();
+    //         return Optional.ofNullable(sareeList)
+    //                 .filter(list -> !list.isEmpty())
+    //                 .map(list -> new ResponseEntity<>(list, HttpStatus.OK))
+    //                 .orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+    //     } catch (Exception e) {
+    //         // Log the exception if necessary
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
+
+
     @GetMapping("/all")
     @Async
     public ResponseEntity<List<Sarees>> getallcontroller() {
