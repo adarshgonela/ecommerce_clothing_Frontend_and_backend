@@ -1,6 +1,9 @@
 package com.adarsh.vijayalakshmisarees_Springboot.sarees;
 
-import com.adarsh.vijayalakshmisarees_Springboot.imageUtil.ImageModel;
+import java.util.List;
+
+import com.adarsh.vijayalakshmisarees_Springboot.Images.entity.FileData;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -27,9 +30,7 @@ private int sareesprice;
     @NotNull(message = "type sarees quantity")
 private int sareesquantity;
 
-//    private String imagePath;
+@OneToMany( cascade = CascadeType.ALL)
+    private List<FileData> fileData;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private ImageModel imageModel;
-    private int pieces;
 }

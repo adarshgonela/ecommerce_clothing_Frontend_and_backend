@@ -77,13 +77,13 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 //      .authorizeRequests().antMatchers("/api/auth/**").permitAll()
 //      .antMatchers("/api/test/**").permitAll()
 //      .anyRequest().authenticated();
-//
+
 //    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //  }
   
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(csrf -> csrf.disable())
+    http.cors().and().csrf(csrf -> csrf.disable())
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
@@ -100,4 +100,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     
     return http.build();
   }
+
+
+
 }
