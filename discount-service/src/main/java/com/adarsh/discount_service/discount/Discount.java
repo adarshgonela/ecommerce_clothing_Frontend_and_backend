@@ -12,30 +12,19 @@ public class Discount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     // Field to store discount percentage/type (e.g., "10%", "50%", "B1G1")
-    private String discountPercentage;
-
-    
-    public Discount() {
-    }
-
-    public Discount(int id, String discountPercentage) {
-        this.id = id;
-        this.discountPercentage = discountPercentage;
-    }
-
+    private String discountpercentage;
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getDiscountPercentage() {
-        return discountPercentage;
+    public String getDiscountpercentage() {
+        return discountpercentage;
     }
-
-    public void setDiscountPercentage(String discountPercentage) {
-        this.discountPercentage = discountPercentage;
+    public void setDiscountpercentage(String discountpercentage) {
+        this.discountpercentage = discountpercentage;
     }
+    
+
 }

@@ -33,4 +33,6 @@ private int sareesquantity;
 @OneToMany( cascade = CascadeType.ALL)
     private List<FileData> fileData;
 
+    private int discountid;
+
 }
